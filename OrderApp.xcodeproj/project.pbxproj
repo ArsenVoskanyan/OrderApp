@@ -16,6 +16,10 @@
 		A92B883527A86095008E488F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A92B883327A86095008E488F /* LaunchScreen.storyboard */; };
 		A92B884527A89C1C008E488F /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A92B884427A89C1C008E488F /* Menu.storyboard */; };
 		A92B884727A89C2D008E488F /* Order.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A92B884627A89C2D008E488F /* Order.storyboard */; };
+		A92B884927A8AD9A008E488F /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92B884827A8AD9A008E488F /* CategoryTableViewController.swift */; };
+		A92B884B27A8AE6E008E488F /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92B884A27A8AE6E008E488F /* MenuTableViewController.swift */; };
+		A92B884D27A8AED6008E488F /* OrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92B884C27A8AED6008E488F /* OrderTableViewController.swift */; };
+		A92B884F27A8B2F9008E488F /* MenuItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92B884E27A8B2F9008E488F /* MenuItemDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +34,10 @@
 		A92B883627A86095008E488F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A92B884427A89C1C008E488F /* Menu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
 		A92B884627A89C2D008E488F /* Order.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Order.storyboard; sourceTree = "<group>"; };
+		A92B884827A8AD9A008E488F /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
+		A92B884A27A8AE6E008E488F /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
+		A92B884C27A8AED6008E488F /* OrderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewController.swift; sourceTree = "<group>"; };
+		A92B884E27A8B2F9008E488F /* MenuItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +105,10 @@
 		A92B883E27A887F7008E488F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A92B884827A8AD9A008E488F /* CategoryTableViewController.swift */,
+				A92B884A27A8AE6E008E488F /* MenuTableViewController.swift */,
+				A92B884C27A8AED6008E488F /* OrderTableViewController.swift */,
+				A92B884E27A8B2F9008E488F /* MenuItemDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -182,9 +194,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A92B882A27A86094008E488F /* ViewController.swift in Sources */,
+				A92B884D27A8AED6008E488F /* OrderTableViewController.swift in Sources */,
 				A92B882627A86094008E488F /* AppDelegate.swift in Sources */,
+				A92B884B27A8AE6E008E488F /* MenuTableViewController.swift in Sources */,
+				A92B884927A8AD9A008E488F /* CategoryTableViewController.swift in Sources */,
 				A92B883027A86094008E488F /* OrderApp.xcdatamodeld in Sources */,
 				A92B882827A86094008E488F /* SceneDelegate.swift in Sources */,
+				A92B884F27A8B2F9008E488F /* MenuItemDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
