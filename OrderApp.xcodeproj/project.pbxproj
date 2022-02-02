@@ -22,6 +22,9 @@
 		A9D824A827AB2B5200752CD5 /* UIStoryboard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D824A727AB2B5200752CD5 /* UIStoryboard+Extensions.swift */; };
 		A9D824AA27AB2B6B00752CD5 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D824A927AB2B6B00752CD5 /* UITableView+Extensions.swift */; };
 		A9D824AC27AB2B9400752CD5 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D824AB27AB2B9400752CD5 /* UIViewController+Extensions.swift */; };
+		A9D824AE27AB450C00752CD5 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D824AD27AB450C00752CD5 /* MenuItem.swift */; };
+		A9D824B027AB48BE00752CD5 /* ResponseModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D824AF27AB48BE00752CD5 /* ResponseModels.swift */; };
+		A9D824B227AB4BB000752CD5 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D824B127AB4BB000752CD5 /* Order.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +45,9 @@
 		A9D824A727AB2B5200752CD5 /* UIStoryboard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extensions.swift"; sourceTree = "<group>"; };
 		A9D824A927AB2B6B00752CD5 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		A9D824AB27AB2B9400752CD5 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		A9D824AD27AB450C00752CD5 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
+		A9D824AF27AB48BE00752CD5 /* ResponseModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModels.swift; sourceTree = "<group>"; };
+		A9D824B127AB4BB000752CD5 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +126,9 @@
 		A92B883D27A887EB008E488F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A9D824AD27AB450C00752CD5 /* MenuItem.swift */,
+				A9D824AF27AB48BE00752CD5 /* ResponseModels.swift */,
+				A9D824B127AB4BB000752CD5 /* Order.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -160,6 +169,7 @@
 				A92B881E27A86094008E488F /* Sources */,
 				A92B881F27A86094008E488F /* Frameworks */,
 				A92B882027A86094008E488F /* Resources */,
+				A9D824B327AB4D6A00752CD5 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -218,6 +228,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A9D824B327AB4D6A00752CD5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A92B881E27A86094008E488F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -225,12 +255,15 @@
 			files = (
 				A9D824AA27AB2B6B00752CD5 /* UITableView+Extensions.swift in Sources */,
 				A92B884D27A8AED6008E488F /* OrderTableViewController.swift in Sources */,
+				A9D824B027AB48BE00752CD5 /* ResponseModels.swift in Sources */,
 				A9D824AC27AB2B9400752CD5 /* UIViewController+Extensions.swift in Sources */,
 				A92B882627A86094008E488F /* AppDelegate.swift in Sources */,
 				A9D824A827AB2B5200752CD5 /* UIStoryboard+Extensions.swift in Sources */,
 				A92B884B27A8AE6E008E488F /* MenuTableViewController.swift in Sources */,
 				A92B884927A8AD9A008E488F /* CategoryTableViewController.swift in Sources */,
 				A92B883027A86094008E488F /* OrderApp.xcdatamodeld in Sources */,
+				A9D824AE27AB450C00752CD5 /* MenuItem.swift in Sources */,
+				A9D824B227AB4BB000752CD5 /* Order.swift in Sources */,
 				A92B882827A86094008E488F /* SceneDelegate.swift in Sources */,
 				A92B884F27A8B2F9008E488F /* MenuItemDetailViewController.swift in Sources */,
 			);

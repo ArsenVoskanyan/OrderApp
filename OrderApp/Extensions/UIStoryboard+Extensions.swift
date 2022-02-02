@@ -21,11 +21,11 @@ extension UIStoryboard {
 extension UIStoryboard {
     func getInstance<Controller: UIViewController>(
         ofType controllerType: Controller.Type = Controller.self
-    ) ->Controller {
+    ) -> Controller {
         let reuseIdentifier = String(describing: controllerType)
 
         guard let viewController = self.instantiateViewController(withIdentifier: reuseIdentifier) as? Controller
-        else{ fatalError("View Controller init issue") }
+        else { fatalError("View Controller init issue") }
 
         return viewController
     }
