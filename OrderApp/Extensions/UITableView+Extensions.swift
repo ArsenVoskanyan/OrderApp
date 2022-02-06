@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 extension UITableView {
-    func getDequeue<T: UITableViewCell>(
+    func dequeue<T: UITableViewCell>(
         for indexPath: IndexPath,
         ofType cellType: T.Type = T.self
     ) -> T {

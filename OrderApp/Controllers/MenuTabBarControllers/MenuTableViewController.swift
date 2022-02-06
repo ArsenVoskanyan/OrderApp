@@ -25,7 +25,7 @@ class MenuTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.getDequeue(for: indexPath)
+        let cell = tableView.dequeue(for: indexPath)
 
         return cell
     }
