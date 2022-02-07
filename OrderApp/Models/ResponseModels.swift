@@ -22,4 +22,3 @@ struct OrderResponse: Codable {
         case prepTime = "preparation_time"
     }
 }
-
