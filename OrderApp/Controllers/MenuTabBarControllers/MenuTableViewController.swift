@@ -8,6 +8,7 @@
 import UIKit
 
 class MenuTableViewController: UITableViewController {
+    var category = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()

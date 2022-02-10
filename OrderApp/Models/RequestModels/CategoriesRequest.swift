@@ -17,8 +17,7 @@ struct CategoriesRequest: APIRequest {
     
     func decodeResponse(data: Data) throws -> Response {
         let decoder = JSONDecoder()
-        let categoriesResponse = try decoder.decode(CategoriesResponse.self, from: data)
-        
+        let categoriesResponse = try decoder.decode(CategoriesResponse.self, from: data)        
         return categoriesResponse.categories
     }
 }
