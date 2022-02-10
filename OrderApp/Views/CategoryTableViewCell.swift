@@ -11,8 +11,6 @@ class CategoryTableViewCell: UITableViewCell {
     @IBOutlet weak var categoryNameLabel: UILabel!
 
     func populate(categoryName: String) {
-        var content = self.defaultContentConfiguration()
-        content.text = categoryName
-        self.contentConfiguration = content
+        categoryNameLabel.text = categoryName.capitalized
     }
 }
