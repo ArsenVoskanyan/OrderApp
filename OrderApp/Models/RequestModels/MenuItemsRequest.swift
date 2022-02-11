@@ -23,7 +23,7 @@ struct MenuItemsRequest: APIRequest {
 
         return URLRequest(url: url)
     }
-    
+
     func decodeResponse(data: Data) throws -> Response {
 
         let decoder = JSONDecoder()

@@ -79,7 +79,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LqY-x9-Sid">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LqY-x9-Sid">
                                                     <rect key="frame" x="316" y="0.0" width="41.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -119,19 +119,65 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VHs-VT-Vex">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Title" id="omh-VQ-xmP">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ZqL-8r-Rhd"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RfG-06-wa6">
+                                <rect key="frame" x="15" y="59" width="384" height="281"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.on.rectangle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="7ru-8v-4U5">
+                                        <rect key="frame" x="0.0" y="0.5" width="384" height="223"/>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="mkd-Aq-env">
+                                        <rect key="frame" x="0.0" y="232" width="384" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="[Item Name]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DR8-9O-gvs">
+                                                <rect key="frame" x="0.0" y="0.0" width="322" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Price]" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksY-GZ-tZE">
+                                                <rect key="frame" x="330" y="0.0" width="54" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Item Detail]" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDZ-e7-lSt">
+                                        <rect key="frame" x="0.0" y="260.5" width="384" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Tq-tq-1me">
+                                <rect key="frame" x="15" y="803" width="384" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="0Oc-Gk-FC4"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Add To Order"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="erB-IG-P9D"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="7Tq-tq-1me" firstAttribute="leading" secondItem="erB-IG-P9D" secondAttribute="leading" constant="15" id="1pE-F6-nEv"/>
+                            <constraint firstItem="erB-IG-P9D" firstAttribute="trailing" secondItem="RfG-06-wa6" secondAttribute="trailing" constant="15" id="7HV-zc-6dY"/>
+                            <constraint firstItem="7ru-8v-4U5" firstAttribute="height" secondItem="Zki-Nd-RSH" secondAttribute="height" multiplier="0.25" id="Gln-wL-Vlw"/>
+                            <constraint firstItem="RfG-06-wa6" firstAttribute="leading" secondItem="erB-IG-P9D" secondAttribute="leading" constant="15" id="hXC-4E-YFd"/>
+                            <constraint firstItem="erB-IG-P9D" firstAttribute="trailing" secondItem="7Tq-tq-1me" secondAttribute="trailing" constant="15" id="qyr-Op-5yd"/>
+                            <constraint firstItem="erB-IG-P9D" firstAttribute="bottom" secondItem="7Tq-tq-1me" secondAttribute="bottom" constant="15" id="rr9-ML-6bC"/>
+                            <constraint firstItem="RfG-06-wa6" firstAttribute="top" secondItem="erB-IG-P9D" secondAttribute="top" constant="15" id="t35-Fq-oxR"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="addToOrderButton" destination="7Tq-tq-1me" id="x4Q-Mg-BzV"/>
+                        <outlet property="detailTextLabel" destination="XDZ-e7-lSt" id="cFY-w1-gK1"/>
+                        <outlet property="imageView" destination="7ru-8v-4U5" id="WdC-N2-vMi"/>
+                        <outlet property="nameLabel" destination="DR8-9O-gvs" id="T9W-hH-CK7"/>
+                        <outlet property="priceLabel" destination="ksY-GZ-tZE" id="sIu-Fk-vMG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NhM-t3-1v0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -158,6 +204,7 @@
     </scenes>
     <resources>
         <image name="menu" width="30" height="30"/>
+        <image name="photo.on.rectangle" catalog="system" width="128" height="97"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

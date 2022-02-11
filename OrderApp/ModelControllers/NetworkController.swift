@@ -11,7 +11,7 @@ final class NetworkController {
     static let shared = NetworkController()
     private init() {}
 
-    func sendRequest<Request: APIRequest>(_ request: Request) async throws -> Request.Response {        
+    func sendRequest<Request: APIRequest>(_ request: Request) async throws -> Request.Response {
         let(data, response) = try await URLSession.shared.data(for: request.urlRequest)
         let errorName = String(describing: Request.self)
         let error = APIRequestErrors(rawValue: errorName)
