@@ -14,11 +14,10 @@ struct CategoriesRequest: APIRequest {
         let categoriesURL = baseURl.appendingPathComponent(APIFollowingEndpoints.categories.rawValue)
         return URLRequest(url: categoriesURL)
     }
-    
+
     func decodeResponse(data: Data) throws -> Response {
         let decoder = JSONDecoder()
-        let categoriesResponse = try decoder.decode(CategoriesResponse.self, from: data)
-        
+        let categoriesResponse = try decoder.decode(CategoriesResponse.self, from: data)        
         return categoriesResponse.categories
     }
 }
