@@ -61,7 +61,9 @@ class MenuItemDetailViewController: UIViewController {
         customizeOrderButton()
 
         if let menuItem = menuItem {
-            NetworkController.shared.order.menuItems.append( menuItem )
+            self.dismiss(animated: true) {
+                NetworkController.shared.order.menuItems.append( menuItem )
+            }
         }
     }
 }
