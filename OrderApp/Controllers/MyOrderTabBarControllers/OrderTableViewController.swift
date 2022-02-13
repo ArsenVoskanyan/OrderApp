@@ -12,8 +12,6 @@ class OrderTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("OrderTableViewController")
-
         NotificationCenter.default.addObserver(
             tableView!,
             selector: #selector(tableView.reloadData),
