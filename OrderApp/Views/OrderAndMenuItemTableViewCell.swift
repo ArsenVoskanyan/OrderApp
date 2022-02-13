@@ -8,6 +8,7 @@
 import UIKit
 
 class OrderAndMenuItemTableViewCell: UITableViewCell {
+
     @IBOutlet weak var menuItemNameLabel: UILabel!
     @IBOutlet weak var menuItemPriceLabel: UILabel!
 

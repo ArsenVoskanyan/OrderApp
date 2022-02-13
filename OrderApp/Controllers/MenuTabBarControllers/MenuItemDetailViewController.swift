@@ -44,7 +44,7 @@ class MenuItemDetailViewController: UIViewController {
         }
     }
 
-    @IBAction func orderButtonTapped(_ sender: UIButton) {
+    func customizeOrderButton() {
         UIView.animate(
             withDuration: 0.5,
             delay: 0,
@@ -53,8 +53,15 @@ class MenuItemDetailViewController: UIViewController {
             options: []
         ) {
             self.addToOrderButton.transform = CGAffineTransform(scaleX: 2, y: 2)
-            self.addToOrderButton.transform = CGAffineTransform(scaleX: 1, y: 1)
+            self.addToOrderButton.transform = CGAffineTransform(scaleX: 1, y: 1)            
+        }
+    }
 
-            }
+    @IBAction func orderButtonTapped(_ sender: UIButton) {
+        customizeOrderButton()
+
+        if let menuItem = menuItem {
+            NetworkController.shared.order.menuItems.append( menuItem )
+        }
     }
 }
