@@ -9,7 +9,7 @@ import UIKit
 
 class CategoryTableViewController: UITableViewController {
     var categories = [String]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -13,7 +13,7 @@ extension UITableView {
         for indexPath: IndexPath,
         ofType cellType: T.Type = T.self
     ) -> T {
-        let reuseIdentifier = String(describing: cellType.self)
+        let reuseIdentifier = String(describing: cellType)
         guard let cell = self.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? T
         else { fatalError("Check Cell reuseIdentifier") }
         return cell
