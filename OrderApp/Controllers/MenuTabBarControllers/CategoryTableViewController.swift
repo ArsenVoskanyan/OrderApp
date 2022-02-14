@@ -27,16 +27,6 @@ class CategoryTableViewController: UITableViewController {
         }
     }
 
-    func displayError(_ error: Error, _ title: String) {
-        guard let _ = viewIfLoaded?.window else { return }
-
-        let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "Dismiss", style: .default)
-        alert.addAction(alertAction)
-
-        self.present(alert, animated: true)
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         categories.count
     }

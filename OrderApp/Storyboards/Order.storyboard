@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -59,11 +60,61 @@
                             <outlet property="delegate" destination="IbS-th-mVa" id="iQP-Eb-b1p"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Icw-mg-dpm"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="Icw-mg-dpm">
+                        <barButtonItem key="rightBarButtonItem" title="Submit" id="01U-2C-heD">
+                            <connections>
+                                <action selector="submitTapped:" destination="IbS-th-mVa" id="9jy-ny-PCZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kyr-Ik-f6R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="632" y="35"/>
+        </scene>
+        <!--Order Confirmation View Controller-->
+        <scene sceneID="zwP-PH-6yG">
+            <objects>
+                <viewController storyboardIdentifier="OrderConfirmationViewController" id="OUM-9v-Oer" customClass="OrderConfirmationViewController" customModule="OrderApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="g34-xf-L3W">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="uhm-co-v2i">
+                                <rect key="frame" x="10" y="417" width="394" height="72"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Thank you for your order! Your wait time is approximately 15 minutes ]" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJD-ja-Sfd">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OD4-57-KsM">
+                                        <rect key="frame" x="0.0" y="41" width="394" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Dissmis"/>
+                                        <connections>
+                                            <action selector="dissmisTapped" destination="OUM-9v-Oer" eventType="touchUpInside" id="B0o-1G-e2e"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="gnP-DL-cbQ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="uhm-co-v2i" firstAttribute="centerY" secondItem="gnP-DL-cbQ" secondAttribute="centerY" id="KLg-8E-9tg"/>
+                            <constraint firstItem="uhm-co-v2i" firstAttribute="leading" secondItem="gnP-DL-cbQ" secondAttribute="leading" constant="10" id="ZdP-2u-FQd"/>
+                            <constraint firstItem="gnP-DL-cbQ" firstAttribute="trailing" secondItem="uhm-co-v2i" secondAttribute="trailing" constant="10" id="hp3-Yn-oKZ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="confirmationLabel" destination="NJD-ja-Sfd" id="RM6-tP-7HB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Ze-jq-baP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1486" y="39"/>
         </scene>
         <!--My Order-->
         <scene sceneID="vvr-54-QA8">

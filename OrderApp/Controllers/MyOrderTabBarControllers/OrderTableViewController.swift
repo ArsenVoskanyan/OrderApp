@@ -8,6 +8,7 @@
 import UIKit
 
 class OrderTableViewController: UITableViewController {
+    var minutesToPrepareOrder = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,49 @@ class OrderTableViewController: UITableViewController {
             name: NetworkController.orderUpdatedNotification,
             object: nil
         )
+    }
+
+    @IBAction func submitTapped(_ sender: UIBarButtonItem) {
+        let orderTotal = NetworkController.shared.order.menuItems.reduce(0.0) { result, menuItem in
+            return result + menuItem.price
+        }
+        let formattedTotal = orderTotal.formatted(.currency(code: "usd"))
+        let alertController = UIAlertController(
+            title: "Confirm Order",
+            message: "You are about to submit your order with a total of \(formattedTotal)",
+            preferredStyle: .actionSheet
+        )
+
+        alertController.addAction(UIAlertAction(
+            title: "Submit",
+            style: .default,
+            handler: { _ in
+                self.uploadOrder()
+
+            }))
+
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        present(alertController, animated: true)
+    }
+
+    func uploadOrder() {
+        let menuIds = NetworkController.shared.order.menuItems.map { $0.id }
+
+        Task {
+            do {
+                minutesToPrepareOrder = try await NetworkController.shared.sendRequest(OrderRequest(menuIDs: menuIds))
+                presentOrderConfirmationVC(minutesToPrepare: minutesToPrepareOrder)
+            } catch {
+                displayError(error, "Order Submission Failed")
+            }
+        }
+    }
+
+    func presentOrderConfirmationVC(minutesToPrepare: Int) {
+        let storyboard = UIStoryboard.order
+        let orderConfirmationVC: OrderConfirmationViewController = storyboard.getInstance()
+        orderConfirmationVC.minutesToPrepare = minutesToPrepare
+        present(orderConfirmationVC, animated: true)
     }
 
     // MARK: - Table view data source

@@ -44,7 +44,7 @@ class MenuItemDetailViewController: UIViewController {
         }
     }
 
-    func customizeOrderButton() {
+    func animatedOrderButton() {
         UIView.animate(
             withDuration: 0.5,
             delay: 0,
@@ -58,7 +58,7 @@ class MenuItemDetailViewController: UIViewController {
     }
 
     @IBAction func orderButtonTapped(_ sender: UIButton) {
-        customizeOrderButton()
+        animatedOrderButton()
 
         if let menuItem = menuItem {
             self.dismiss(animated: true) {

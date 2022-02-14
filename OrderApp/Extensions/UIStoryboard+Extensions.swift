@@ -11,7 +11,7 @@ import UIKit
 extension UIStoryboard {
     static let main = UIStoryboard(name: "Main")
     static let menu = UIStoryboard(name: "Menu")
-    static let order = UIStoryboard(name: "Orde")
+    static let order = UIStoryboard(name: "Order")
 
     convenience init(name: String) {
         self.init(name: name, bundle: nil)
