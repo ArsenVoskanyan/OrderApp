@@ -11,15 +11,46 @@ class OrderTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        addObserverNotificationCenter()
+        navigationItem.leftBarButtonItem = editButtonItem
+    }
+
+    func addObserverNotificationCenter() {
+        NotificationCenter.default.addObserver(
+            tableView!,
+            selector: #selector(tableView.reloadData),
+            name: NetworkController.orderUpdatedNotification,
+            object: nil
+        )
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        NetworkController.shared.order.menuItems.count
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let order = NetworkController.shared.order
+        let menuItem = order.menuItems[indexPath.row]
+        let cell: OrderAndMenuItemTableViewCell = tableView.dequeue(for: indexPath)
+        cell.populate(menuItem: menuItem)
+
+        return cell
+    }
+
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        true
+    }
+
+    override func tableView(
+        _ tableView: UITableView,
+        commit editingStyle: UITableViewCell.EditingStyle,
+        forRowAt indexPath: IndexPath
+    ) {
+        if editingStyle == .delete {
+            NetworkController.shared.order.menuItems.remove(at: indexPath.row)
+        }
     }
 }

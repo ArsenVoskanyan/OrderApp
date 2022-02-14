@@ -15,7 +15,7 @@ class MenuItemDetailViewController: UIViewController {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var detailTextLabel: UILabel!
     @IBOutlet weak var addToOrderButton: UIButton!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,12 +27,12 @@ class MenuItemDetailViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .cancel,
             target: self,
-            action: #selector(cancelButtonFunctionality(_:))
+            action: #selector(cancelButtonTapped(_:))
         )
     }
 
     @objc
-    func cancelButtonFunctionality(_ sender: UIBarButtonItem) {
+    func cancelButtonTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
 
@@ -41,6 +41,29 @@ class MenuItemDetailViewController: UIViewController {
             nameLabel.text = menuItem.name
             priceLabel.text = menuItem.price.formatted(.currency(code: "usd"))
             detailTextLabel.text = menuItem.detailText
+        }
+    }
+
+    func customizeOrderButton() {
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
+            usingSpringWithDamping: 0.7,
+            initialSpringVelocity: 0.1,
+            options: []
+        ) {
+            self.addToOrderButton.transform = CGAffineTransform(scaleX: 2, y: 2)
+            self.addToOrderButton.transform = CGAffineTransform(scaleX: 1, y: 1)            
+        }
+    }
+
+    @IBAction func orderButtonTapped(_ sender: UIButton) {
+        customizeOrderButton()
+
+        if let menuItem = menuItem {
+            self.dismiss(animated: true) {
+                NetworkController.shared.order.menuItems.append( menuItem )
+            }
         }
     }
 }

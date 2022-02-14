@@ -33,14 +33,14 @@ class MenuTableViewController: UITableViewController {
             }
         }
     }
-    
+
     func displayError(_ error: Error, _ title: String) {
         guard let _ = viewIfLoaded?.window
         else { return }
-        
+
         let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "Dismiss", style: .default)
-        alert.addAction(alertAction)        
+        alert.addAction(alertAction)
         self.present(alert, animated: true)
     }
 
@@ -50,7 +50,7 @@ class MenuTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let menuItem = menuItems[indexPath.row]
-        let cell: MenuItemTableViewCell = tableView.dequeue(for: indexPath)
+        let cell: OrderAndMenuItemTableViewCell = tableView.dequeue(for: indexPath)
         cell.populate(menuItem: menuItem)
 
         return cell

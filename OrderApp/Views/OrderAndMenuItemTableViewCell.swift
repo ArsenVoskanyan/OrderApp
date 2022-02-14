@@ -1,5 +1,5 @@
 //
-//  MenuItemTableViewCell.swift
+//  OrderAndMenuItemTableViewCell.swift
 //  OrderApp
 //
 //  Created by Arsen Voskanyan on 10.02.22.
@@ -7,7 +7,8 @@
 
 import UIKit
 
-class MenuItemTableViewCell: UITableViewCell {
+class OrderAndMenuItemTableViewCell: UITableViewCell {
+
     @IBOutlet weak var menuItemNameLabel: UILabel!
     @IBOutlet weak var menuItemPriceLabel: UILabel!
 
