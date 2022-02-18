@@ -17,7 +17,7 @@ class MenuTableViewController: UITableViewController {
         configTitle()
         updateUI()
     }
-    
+
     func configTitle() {
         self.title = "Menu"
         self.navigationItem.largeTitleDisplayMode = .never
@@ -40,7 +40,7 @@ class MenuTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let menuItem = menuItems[indexPath.row]
-        let cell: OrderAndMenuItemTableViewCell = tableView.dequeue(for: indexPath)
+        let cell: MenuItemTableViewCell = tableView.dequeue(for: indexPath)
         cell.populate(menuItem: menuItem)
 
         return cell

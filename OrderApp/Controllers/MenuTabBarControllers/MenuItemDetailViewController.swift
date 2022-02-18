@@ -53,17 +53,19 @@ class MenuItemDetailViewController: UIViewController {
             options: []
         ) {
             self.addToOrderButton.transform = CGAffineTransform(scaleX: 2, y: 2)
-            self.addToOrderButton.transform = CGAffineTransform(scaleX: 1, y: 1)            
+            self.addToOrderButton.transform = CGAffineTransform(scaleX: 1, y: 1)
         }
     }
 
     @IBAction func orderButtonTapped(_ sender: UIButton) {
         animatedOrderButton()
+        let networkController = NetworkController.shared
 
-        if let menuItem = menuItem {
-            self.dismiss(animated: true) {
-                NetworkController.shared.order.menuItems.append( menuItem )
-            }
+        if let menuItem = menuItem,
+           !networkController.order.menuItems.contains(menuItem) {
+            networkController.order.menuItems.append( menuItem )
         }
+
+        self.dismiss(animated: true)
     }
 }

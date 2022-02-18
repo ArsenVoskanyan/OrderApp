@@ -9,6 +9,8 @@ import UIKit
 
 class OrderTableViewController: UITableViewController {
     var minutesToPrepareOrder = 0
+    var menuIds = [Int]()
+    var orderPrice = 0.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +29,7 @@ class OrderTableViewController: UITableViewController {
     }
 
     @IBAction func submitTapped(_ sender: UIBarButtonItem) {
-        let orderTotal = NetworkController.shared.order.menuItems.reduce(0.0) { result, menuItem in
+        let orderTotal = NetworkController.shared.order.menuItems.reduce(orderPrice) { result, menuItem in
             return result + menuItem.price
         }
         let formattedTotal = orderTotal.formatted(.currency(code: "usd"))
@@ -50,7 +52,7 @@ class OrderTableViewController: UITableViewController {
     }
 
     func uploadOrder() {
-        let menuIds = NetworkController.shared.order.menuItems.map { $0.id }
+        menuIds += NetworkController.shared.order.menuItems.map { $0.id }
 
         Task {
             do {
@@ -78,7 +80,8 @@ class OrderTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let order = NetworkController.shared.order
         let menuItem = order.menuItems[indexPath.row]
-        let cell: OrderAndMenuItemTableViewCell = tableView.dequeue(for: indexPath)
+        let cell: OrderTableViewCell = tableView.dequeue(for: indexPath)
+        cell.delegate = self
         cell.populate(menuItem: menuItem)
 
         return cell
@@ -95,6 +98,16 @@ class OrderTableViewController: UITableViewController {
     ) {
         if editingStyle == .delete {
             NetworkController.shared.order.menuItems.remove(at: indexPath.row)
+        }
+    }
+}
+
+extension OrderTableViewController: OrderTableViewCellDelegate {
+    func didTapOrderStepper(cell: UITableViewCell, stepper value: Int) {
+        if let index = tableView.indexPath(for: cell)?.row {
+            let menuItem = NetworkController.shared.order.menuItems[index]
+            menuIds += Array(repeating: menuItem.id, count: value)
+            orderPrice += menuItem.price * Double(value)
         }
     }
 }
