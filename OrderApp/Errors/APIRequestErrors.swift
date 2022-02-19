@@ -11,4 +11,5 @@ enum APIRequestErrors: String, Error {
     case categoriesNotFound = "CategoriesRequest"
     case menuItemsNotFound = "MenuItemsRequest"
     case orderRequestFailed = "OrderRequest"
+    case imageDataMissing = "ImageRequest"
 }

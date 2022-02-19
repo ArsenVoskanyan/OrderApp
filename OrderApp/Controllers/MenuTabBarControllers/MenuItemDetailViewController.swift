@@ -10,11 +10,11 @@ import UIKit
 class MenuItemDetailViewController: UIViewController {
     var menuItem: MenuItem?
 
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var detailTextLabel: UILabel!
-    @IBOutlet weak var addToOrderButton: UIButton!
+    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var priceLabel: UILabel!
+    @IBOutlet private weak var detailTextLabel: UILabel!
+    @IBOutlet private weak var addToOrderButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class MenuItemDetailViewController: UIViewController {
         updateUI()
     }
 
-    func addCancelBarButtonItem() {
+    private func addCancelBarButtonItem() {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .cancel,
             target: self,
@@ -32,19 +32,25 @@ class MenuItemDetailViewController: UIViewController {
     }
 
     @objc
-    func cancelButtonTapped(_ sender: UIBarButtonItem) {
+    private func cancelButtonTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
 
-    func updateUI() {
+    private func updateUI() {
         if let menuItem = menuItem {
             nameLabel.text = menuItem.name
             priceLabel.text = menuItem.price.formatted(.currency(code: "usd"))
             detailTextLabel.text = menuItem.detailText
+
+            Task {
+                if let image = try? await NetworkController.shared.sendRequest(ImageRequest(url: menuItem.imageURL)) {
+                    imageView.image = image
+                }
+            }
         }
     }
 
-    func animatedOrderButton() {
+    private func animatedOrderButton() {
         UIView.animate(
             withDuration: 0.5,
             delay: 0,

@@ -13,19 +13,13 @@ protocol OrderTableViewCellDelegate: AnyObject {
 
 class OrderTableViewCell: UITableViewCell {
     weak var delegate: OrderTableViewCellDelegate?
+    private var imageLoadTask: Task<Void, Never>?
 
-    var orderItemName: String? { didSet {
-        orderItemNameLabel.text = orderItemName
-    }}
-
-    var orderItemPrice: String? { didSet {
-        orderItemPriceLabel.text = orderItemPrice
-    }}
-
-    @IBOutlet weak private var orderItemNameLabel: UILabel!
-    @IBOutlet weak private var orderItemPriceLabel: UILabel!
-    @IBOutlet weak private var totalOrderItemLabel: UILabel!
-    @IBOutlet weak private var orderItemStepper: UIStepper!
+    @IBOutlet private weak var orderItemImageView: UIImageView!
+    @IBOutlet private weak var orderItemNameLabel: UILabel!
+    @IBOutlet private weak var orderItemPriceLabel: UILabel!
+    @IBOutlet private weak var totalOrderItemLabel: UILabel!
+    @IBOutlet private weak var orderItemStepper: UIStepper!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,9 +27,23 @@ class OrderTableViewCell: UITableViewCell {
         totalOrderItemLabel.text = String(Int(orderItemStepper.value))
     }
 
+    override func prepareForReuse() {
+        orderItemNameLabel.text = nil
+        orderItemPriceLabel.text = nil
+        orderItemImageView.image = nil
+        imageLoadTask = nil
+    }
+
     func populate(menuItem: MenuItem) {
-        orderItemName = menuItem.name
-        orderItemPrice = "$\(menuItem.price)"
+        orderItemNameLabel.text = menuItem.name
+        orderItemPriceLabel.text = menuItem.price.formatted(.currency(code: "usd"))
+
+        imageLoadTask = Task {
+            if let image = try? await NetworkController.shared.sendRequest(ImageRequest(url: menuItem.imageURL)) {
+                orderItemImageView.image = image
+            }
+        }
+        imageLoadTask = nil
     }
 
     @IBAction func stepperValueChanged(_ sender: UIStepper) {

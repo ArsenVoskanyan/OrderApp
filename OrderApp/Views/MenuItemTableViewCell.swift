@@ -8,20 +8,28 @@
 import UIKit
 
 class MenuItemTableViewCell: UITableViewCell {
+    private var imageLoadTask: Task<Void, Never>?
 
-    var menuItemName: String? { didSet {
-        menuItemNameLabel.text = menuItemName
-    }}
+    @IBOutlet private weak var menuItemImageView: UIImageView!
+    @IBOutlet private weak var menuItemNameLabel: UILabel!
+    @IBOutlet private weak var menuItemPriceLabel: UILabel!
 
-    var menuItemPrice: String? { didSet {
-        menuItemPriceLabel.text = menuItemPrice
-    }}
-
-    @IBOutlet weak private var menuItemNameLabel: UILabel!
-    @IBOutlet weak private var menuItemPriceLabel: UILabel!
+    override func prepareForReuse() {
+        menuItemNameLabel.text = nil
+        menuItemPriceLabel.text = nil
+        menuItemImageView.image = nil
+        imageLoadTask = nil
+    }
 
     func populate(menuItem: MenuItem) {
-        menuItemName = menuItem.name
-        menuItemPrice = "$\(menuItem.price)"
+        menuItemNameLabel.text = menuItem.name
+        menuItemPriceLabel.text = menuItem.price.formatted(.currency(code: "usd"))
+
+        imageLoadTask = Task {
+            if let image = try? await NetworkController.shared.sendRequest(ImageRequest(url: menuItem.imageURL)) {
+                menuItemImageView.image = image
+            }
+        }
+        imageLoadTask = nil
     }
 }

@@ -29,6 +29,7 @@
 		A936A1EB27AF83240013BED6 /* APIFollowingEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A936A1EA27AF83240013BED6 /* APIFollowingEndpoints.swift */; };
 		A94BD88B27B541840037266D /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BD88A27B541840037266D /* CategoryTableViewCell.swift */; };
 		A94BD88D27B555890037266D /* MenuItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BD88C27B555890037266D /* MenuItemTableViewCell.swift */; };
+		A98ED1C427C0568400DE650C /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98ED1C327C0568400DE650C /* ImageRequest.swift */; };
 		A9953DEA27BAF6FC00504712 /* OrderConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9953DE927BAF6FC00504712 /* OrderConfirmationViewController.swift */; };
 		A9D824A827AB2B5200752CD5 /* UIStoryboard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D824A727AB2B5200752CD5 /* UIStoryboard+Extensions.swift */; };
 		A9D824AA27AB2B6B00752CD5 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D824A927AB2B6B00752CD5 /* UITableView+Extensions.swift */; };
@@ -63,6 +64,7 @@
 		A936A1EA27AF83240013BED6 /* APIFollowingEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFollowingEndpoints.swift; sourceTree = "<group>"; };
 		A94BD88A27B541840037266D /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		A94BD88C27B555890037266D /* MenuItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemTableViewCell.swift; sourceTree = "<group>"; };
+		A98ED1C327C0568400DE650C /* ImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
 		A9953DE927BAF6FC00504712 /* OrderConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationViewController.swift; sourceTree = "<group>"; };
 		A9D824A727AB2B5200752CD5 /* UIStoryboard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extensions.swift"; sourceTree = "<group>"; };
 		A9D824A927AB2B6B00752CD5 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				A936A1DC27AF51D00013BED6 /* CategoriesRequest.swift */,
 				A936A1DE27AF52CC0013BED6 /* MenuItemsRequest.swift */,
 				A936A1E027AF53000013BED6 /* OrderRequest.swift */,
+				A98ED1C327C0568400DE650C /* ImageRequest.swift */,
 			);
 			path = RequestModels;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				A9D824B227AB4BB000752CD5 /* Order.swift in Sources */,
 				A936A1E327AF54AF0013BED6 /* APIRequest.swift in Sources */,
 				A927790927BEEFAC00184CD4 /* OrderTableViewCell.swift in Sources */,
+				A98ED1C427C0568400DE650C /* ImageRequest.swift in Sources */,
 				A936A1EB27AF83240013BED6 /* APIFollowingEndpoints.swift in Sources */,
 				A94BD88D27B555890037266D /* MenuItemTableViewCell.swift in Sources */,
 				A9953DEA27BAF6FC00504712 /* OrderConfirmationViewController.swift in Sources */,

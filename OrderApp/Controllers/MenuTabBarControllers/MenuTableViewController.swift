@@ -9,7 +9,7 @@ import UIKit
 
 class MenuTableViewController: UITableViewController {
     var category = ""
-    var menuItems = [MenuItem]()
+    private var menuItems = [MenuItem]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,12 +18,12 @@ class MenuTableViewController: UITableViewController {
         updateUI()
     }
 
-    func configTitle() {
+    private func configTitle() {
         self.title = "Menu"
         self.navigationItem.largeTitleDisplayMode = .never
     }
 
-    func updateUI() {
+    private func updateUI() {
         Task.init {
             do {
                 menuItems = try await NetworkController.shared.sendRequest(MenuItemsRequest(categoryName: category))

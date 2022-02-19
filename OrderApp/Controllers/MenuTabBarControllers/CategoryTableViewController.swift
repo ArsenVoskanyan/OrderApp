@@ -8,7 +8,7 @@
 import UIKit
 
 class CategoryTableViewController: UITableViewController {
-    var categories = [String]()
+    private var categories = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,7 +16,7 @@ class CategoryTableViewController: UITableViewController {
         updateUI()
     }
 
-    func updateUI() {
+    private func updateUI() {
         Task {
             do {
                 categories = try await NetworkController.shared.sendRequest(CategoriesRequest())

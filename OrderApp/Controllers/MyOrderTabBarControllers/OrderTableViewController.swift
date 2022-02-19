@@ -8,9 +8,9 @@
 import UIKit
 
 class OrderTableViewController: UITableViewController {
-    var minutesToPrepareOrder = 0
-    var menuIds = [Int]()
-    var orderPrice = 0.0
+    private var minutesToPrepareOrder = 0
+    private var menuIds = [Int]()
+    private var orderPrice = 0.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +51,7 @@ class OrderTableViewController: UITableViewController {
         present(alertController, animated: true)
     }
 
-    func uploadOrder() {
+    private func uploadOrder() {
         menuIds += NetworkController.shared.order.menuItems.map { $0.id }
 
         Task {
@@ -64,7 +64,7 @@ class OrderTableViewController: UITableViewController {
         }
     }
 
-    func presentOrderConfirmationVC(minutesToPrepare: Int) {
+    private func presentOrderConfirmationVC(minutesToPrepare: Int) {
         let storyboard = UIStoryboard.order
         let orderConfirmationVC: OrderConfirmationViewController = storyboard.getInstance()
         orderConfirmationVC.minutesToPrepare = minutesToPrepare
