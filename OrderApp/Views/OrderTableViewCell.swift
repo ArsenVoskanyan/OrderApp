@@ -14,6 +14,7 @@ protocol OrderTableViewCellDelegate: AnyObject {
 class OrderTableViewCell: UITableViewCell {
     weak var delegate: OrderTableViewCellDelegate?
     private var imageLoadTask: Task<Void, Never>?
+    private var price = 0.0
 
     @IBOutlet private weak var orderItemImageView: UIImageView!
     @IBOutlet private weak var orderItemNameLabel: UILabel!
@@ -37,6 +38,7 @@ class OrderTableViewCell: UITableViewCell {
     func populate(menuItem: MenuItem) {
         orderItemNameLabel.text = menuItem.name
         orderItemPriceLabel.text = menuItem.price.formatted(.currency(code: "usd"))
+        price = menuItem.price
 
         imageLoadTask = Task {
             if let image = try? await NetworkController.shared.sendRequest(ImageRequest(url: menuItem.imageURL)) {
@@ -48,6 +50,7 @@ class OrderTableViewCell: UITableViewCell {
 
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
         totalOrderItemLabel.text = String(Int(orderItemStepper.value))
+        orderItemPriceLabel.text = (price * orderItemStepper.value).formatted(.currency(code: "usd"))
 
         delegate?.didTapOrderStepper(cell: self, stepper: Int(orderItemStepper.value - 1))
     }
