@@ -12,6 +12,7 @@ extension UIStoryboard {
     static let main = UIStoryboard(name: "Main")
     static let menu = UIStoryboard(name: "Menu")
     static let order = UIStoryboard(name: "Order")
+    static let historyOrders = UIStoryboard(name: "HistoryOrders")
 
     convenience init(name: String) {
         self.init(name: name, bundle: nil)

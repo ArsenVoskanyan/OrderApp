@@ -11,13 +11,6 @@ final class NetworkController {
     static let shared = NetworkController()
     private init() {}
 
-    var order = Order() { didSet {
-        NotificationCenter.default.post(
-            name: NetworkController.orderUpdatedNotification,
-            object: nil
-        )
-    }}
-
     func sendRequest<Request: APIRequest>(_ request: Request) async throws -> Request.Response {
         let(data, response) = try await URLSession.shared.data(for: request.urlRequest)
         let errorName = String(describing: Request.self)
@@ -29,8 +22,4 @@ final class NetworkController {
 
         return try request.decodeResponse(data: data)
     }
-}
-
-extension NetworkController {
-    static let orderUpdatedNotification = Notification.Name("MenuController.orderUpdated")
 }

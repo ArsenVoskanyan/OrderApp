@@ -65,11 +65,11 @@ class MenuItemDetailViewController: UIViewController {
 
     @IBAction func orderButtonTapped(_ sender: UIButton) {
         animatedOrderButton()
-        let networkController = NetworkController.shared
+        let orderController = OrderController.shared
 
         if let menuItem = menuItem,
-           !networkController.order.menuItems.contains(menuItem) {
-            networkController.order.menuItems.append( menuItem )
+           !orderController.order.menuItems.contains(menuItem) {
+            orderController.order.menuItems.append( menuItem )
         }
 
         self.dismiss(animated: true)

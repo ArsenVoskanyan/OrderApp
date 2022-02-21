@@ -20,7 +20,7 @@ class OrderConfirmationViewController: UIViewController {
 
     @IBAction func dissmisTapped() {
         dismiss(animated: true) {
-            NetworkController.shared.order.menuItems.removeAll()
+            OrderController.shared.order.menuItems.removeAll()
         }
     }
 }

@@ -9,7 +9,7 @@ import UIKit
 
 class OrderTableViewController: UITableViewController {
     private var minutesToPrepareOrder = 0
-    private var menuIds = [Int]()
+    private var menuItems = [MenuItem]()
     private var orderPrice = 0.0
 
     override func viewDidLoad() {
@@ -23,16 +23,17 @@ class OrderTableViewController: UITableViewController {
         NotificationCenter.default.addObserver(
             tableView!,
             selector: #selector(tableView.reloadData),
-            name: NetworkController.orderUpdatedNotification,
+            name: OrderController.orderUpdatedNotification,
             object: nil
         )
     }
 
     @IBAction func submitTapped(_ sender: UIBarButtonItem) {
-        let orderTotal = NetworkController.shared.order.menuItems.reduce(orderPrice) { result, menuItem in
+        menuItems += OrderController.shared.order.menuItems
+        let orderTotalPrice = menuItems.reduce(0.0) { result, menuItem in
             return result + menuItem.price
         }
-        let formattedTotal = orderTotal.formatted(.currency(code: "usd"))
+        let formattedTotal = orderTotalPrice.formatted(.currency(code: "usd"))
         let alertController = UIAlertController(
             title: "Confirm Order",
             message: "You are about to submit your order with a total of \(formattedTotal)",
@@ -43,7 +44,7 @@ class OrderTableViewController: UITableViewController {
             title: "Submit",
             style: .default,
             handler: { _ in
-                self.uploadOrder()
+                self.uploadOrder(price: orderTotalPrice)
 
             }))
 
@@ -51,11 +52,13 @@ class OrderTableViewController: UITableViewController {
         present(alertController, animated: true)
     }
 
-    private func uploadOrder() {
-        menuIds += NetworkController.shared.order.menuItems.map { $0.id }
+    private func uploadOrder(price: Double) {
+        let menuIds = menuItems.map { $0.id }
 
         Task {
             do {
+                let historyOrder = HistoryOrder(order: Order(menuItems: menuItems), price: price)
+                OrderController.shared.historyOrders.append(historyOrder)
                 minutesToPrepareOrder = try await NetworkController.shared.sendRequest(OrderRequest(menuIDs: menuIds))
                 presentOrderConfirmationVC(minutesToPrepare: minutesToPrepareOrder)
             } catch {
@@ -74,11 +77,11 @@ class OrderTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        NetworkController.shared.order.menuItems.count
+        OrderController.shared.order.menuItems.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let order = NetworkController.shared.order
+        let order = OrderController.shared.order
         let menuItem = order.menuItems[indexPath.row]
         let cell: OrderTableViewCell = tableView.dequeue(for: indexPath)
         cell.delegate = self
@@ -97,7 +100,7 @@ class OrderTableViewController: UITableViewController {
         forRowAt indexPath: IndexPath
     ) {
         if editingStyle == .delete {
-            NetworkController.shared.order.menuItems.remove(at: indexPath.row)
+            OrderController.shared.order.menuItems.remove(at: indexPath.row)
         }
     }
 }
@@ -105,8 +108,8 @@ class OrderTableViewController: UITableViewController {
 extension OrderTableViewController: OrderTableViewCellDelegate {
     func didTapOrderStepper(cell: UITableViewCell, stepper value: Int) {
         if let index = tableView.indexPath(for: cell)?.row {
-            let menuItem = NetworkController.shared.order.menuItems[index]
-            menuIds += Array(repeating: menuItem.id, count: value)
+            let menuItem = OrderController.shared.order.menuItems[index]
+            menuItems += Array(repeating: menuItem, count: value)
             orderPrice += menuItem.price * Double(value)
         }
     }

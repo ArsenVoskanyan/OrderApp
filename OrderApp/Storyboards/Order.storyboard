@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Order-->
         <scene sceneID="e9Q-M0-Ck9">
             <objects>
                 <tableViewController storyboardIdentifier="OrderTableViewController" id="IbS-th-mVa" customClass="OrderTableViewController" customModule="OrderApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -92,7 +92,7 @@
                             <outlet property="delegate" destination="IbS-th-mVa" id="iQP-Eb-b1p"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Icw-mg-dpm">
+                    <navigationItem key="navigationItem" title="Order" id="Icw-mg-dpm">
                         <barButtonItem key="rightBarButtonItem" title="Submit" id="01U-2C-heD">
                             <connections>
                                 <action selector="submitTapped:" destination="IbS-th-mVa" id="9jy-ny-PCZ"/>
@@ -148,11 +148,11 @@
             </objects>
             <point key="canvasLocation" x="1486" y="39"/>
         </scene>
-        <!--My Order-->
+        <!--Order-->
         <scene sceneID="vvr-54-QA8">
             <objects>
                 <navigationController id="aWQ-lm-Nx2" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My Order" image="order" id="7qN-5a-HMt"/>
+                    <tabBarItem key="tabBarItem" title="Order" image="shoppingCart" id="7qN-5a-HMt"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ctr-x4-ssA">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -168,8 +168,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="order" width="30" height="30"/>
         <image name="photo.on.rectangle" catalog="system" width="128" height="97"/>
+        <image name="shoppingCart" width="30" height="30"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

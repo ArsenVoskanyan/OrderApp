@@ -14,7 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     @objc
     func updateOrderBadge() {
-        switch NetworkController.shared.order.menuItems.count {
+        switch OrderController.shared.order.menuItems.count {
         case 0:
             orderTabBarItem.badgeValue = nil
         case let count:
@@ -32,7 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(updateOrderBadge),
-            name: NetworkController.orderUpdatedNotification,
+            name: OrderController.orderUpdatedNotification,
             object: nil
         )
 
