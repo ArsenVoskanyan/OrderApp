@@ -7,7 +7,12 @@
 
 import UIKit
 
+protocol OrderConfirmationViewControllerDelegate: AnyObject {
+    func resetMenuItems()
+}
+
 class OrderConfirmationViewController: UIViewController {
+    weak var delegate: OrderConfirmationViewControllerDelegate?
     var minutesToPrepare = 0
 
     @IBOutlet weak var confirmationLabel: UILabel!
@@ -19,8 +24,7 @@ class OrderConfirmationViewController: UIViewController {
     }
 
     @IBAction func dissmisTapped() {
-        dismiss(animated: true) {
-            OrderController.shared.order.menuItems.removeAll()
-        }
+        delegate?.resetMenuItems()
+        dismiss(animated: true)
     }
 }

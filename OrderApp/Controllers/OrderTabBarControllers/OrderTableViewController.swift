@@ -10,7 +10,6 @@ import UIKit
 class OrderTableViewController: UITableViewController {
     private var minutesToPrepareOrder = 0
     private var menuItems = [MenuItem]()
-    private var orderPrice = 0.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +28,8 @@ class OrderTableViewController: UITableViewController {
     }
 
     @IBAction func submitTapped(_ sender: UIBarButtonItem) {
-        menuItems += OrderController.shared.order.menuItems
-        let orderTotalPrice = menuItems.reduce(0.0) { result, menuItem in
+        let allMenuItems = OrderController.shared.order.menuItems + menuItems
+        let orderTotalPrice = allMenuItems.reduce(0.0) { result, menuItem in
             return result + menuItem.price
         }
         let formattedTotal = orderTotalPrice.formatted(.currency(code: "usd"))
@@ -53,7 +52,8 @@ class OrderTableViewController: UITableViewController {
     }
 
     private func uploadOrder(price: Double) {
-        let menuIds = menuItems.map { $0.id }
+        let allMenuItems = OrderController.shared.order.menuItems + menuItems
+        let menuIds = allMenuItems.map { $0.id }
 
         Task {
             do {
@@ -71,6 +71,7 @@ class OrderTableViewController: UITableViewController {
         let storyboard = UIStoryboard.order
         let orderConfirmationVC: OrderConfirmationViewController = storyboard.getInstance()
         orderConfirmationVC.minutesToPrepare = minutesToPrepare
+        orderConfirmationVC.delegate = self
         present(orderConfirmationVC, animated: true)
     }
 
@@ -100,6 +101,9 @@ class OrderTableViewController: UITableViewController {
         forRowAt indexPath: IndexPath
     ) {
         if editingStyle == .delete {
+            menuItems = menuItems.filter { item in
+                item != OrderController.shared.order.menuItems[indexPath.row]
+            }
             OrderController.shared.order.menuItems.remove(at: indexPath.row)
         }
     }
@@ -108,9 +112,17 @@ class OrderTableViewController: UITableViewController {
 extension OrderTableViewController: OrderTableViewCellDelegate {
     func didTapOrderStepper(cell: UITableViewCell, stepper value: Int) {
         if let index = tableView.indexPath(for: cell)?.row {
-            let menuItem = OrderController.shared.order.menuItems[index]
-            menuItems += Array(repeating: menuItem, count: value)
-            orderPrice += menuItem.price * Double(value)
+            menuItems = menuItems.filter { item in
+                item != OrderController.shared.order.menuItems[index]
+            }
+            menuItems += Array(repeating: OrderController.shared.order.menuItems[index], count: value)
         }
+    }
+}
+
+extension OrderTableViewController: OrderConfirmationViewControllerDelegate {
+    func resetMenuItems() {
+        OrderController.shared.order.menuItems.removeAll()
+        menuItems.removeAll()
     }
 }
