@@ -8,7 +8,7 @@
 import UIKit
 
 class CategoryTableViewCell: UITableViewCell {
-    @IBOutlet weak var categoryNameLabel: UILabel!
+    @IBOutlet private var categoryNameLabel: UILabel!
 
     func populate(categoryName: String) {
         categoryNameLabel.text = categoryName.capitalized

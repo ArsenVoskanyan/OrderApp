@@ -8,7 +8,7 @@
 import UIKit
 
 class CategoryTableViewController: UITableViewController {
-    var categories = [String]()
+    private var categories = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,7 +16,7 @@ class CategoryTableViewController: UITableViewController {
         updateUI()
     }
 
-    func updateUI() {
+    private func updateUI() {
         Task {
             do {
                 categories = try await NetworkController.shared.sendRequest(CategoriesRequest())
@@ -25,16 +25,6 @@ class CategoryTableViewController: UITableViewController {
                 displayError(error, "Failed to Fetch Categories")
             }
         }
-    }
-
-    func displayError(_ error: Error, _ title: String) {
-        guard let _ = viewIfLoaded?.window else { return }
-
-        let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "Dismiss", style: .default)
-        alert.addAction(alertAction)
-
-        self.present(alert, animated: true)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

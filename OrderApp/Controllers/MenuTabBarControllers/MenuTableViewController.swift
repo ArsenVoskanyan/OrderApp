@@ -9,7 +9,7 @@ import UIKit
 
 class MenuTableViewController: UITableViewController {
     var category = ""
-    var menuItems = [MenuItem]()
+    private var menuItems = [MenuItem]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,13 +17,13 @@ class MenuTableViewController: UITableViewController {
         configTitle()
         updateUI()
     }
-    
-    func configTitle() {
+
+    private func configTitle() {
         self.title = "Menu"
         self.navigationItem.largeTitleDisplayMode = .never
     }
 
-    func updateUI() {
+    private func updateUI() {
         Task.init {
             do {
                 menuItems = try await NetworkController.shared.sendRequest(MenuItemsRequest(categoryName: category))
@@ -34,23 +34,13 @@ class MenuTableViewController: UITableViewController {
         }
     }
 
-    func displayError(_ error: Error, _ title: String) {
-        guard let _ = viewIfLoaded?.window
-        else { return }
-
-        let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "Dismiss", style: .default)
-        alert.addAction(alertAction)
-        self.present(alert, animated: true)
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         menuItems.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let menuItem = menuItems[indexPath.row]
-        let cell: OrderAndMenuItemTableViewCell = tableView.dequeue(for: indexPath)
+        let cell: MenuItemTableViewCell = tableView.dequeue(for: indexPath)
         cell.populate(menuItem: menuItem)
 
         return cell
