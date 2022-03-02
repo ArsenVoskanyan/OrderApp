@@ -10,11 +10,11 @@ import UIKit
 class MenuItemDetailViewController: UIViewController {
     var menuItem: MenuItem?
 
-    @IBOutlet private weak var imageView: UIImageView!
-    @IBOutlet private weak var nameLabel: UILabel!
-    @IBOutlet private weak var priceLabel: UILabel!
-    @IBOutlet private weak var detailTextLabel: UILabel!
-    @IBOutlet private weak var addToOrderButton: UIButton!
+    @IBOutlet private var imageView: UIImageView!
+    @IBOutlet private var nameLabel: UILabel!
+    @IBOutlet private var priceLabel: UILabel!
+    @IBOutlet private var detailTextLabel: UILabel!
+    @IBOutlet private var addToOrderButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()

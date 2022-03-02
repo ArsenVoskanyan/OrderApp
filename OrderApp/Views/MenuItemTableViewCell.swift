@@ -10,9 +10,9 @@ import UIKit
 class MenuItemTableViewCell: UITableViewCell {
     private var imageLoadTask: Task<Void, Never>?
 
-    @IBOutlet private weak var menuItemImageView: UIImageView!
-    @IBOutlet private weak var menuItemNameLabel: UILabel!
-    @IBOutlet private weak var menuItemPriceLabel: UILabel!
+    @IBOutlet private var menuItemImageView: UIImageView!
+    @IBOutlet private var menuItemNameLabel: UILabel!
+    @IBOutlet private var menuItemPriceLabel: UILabel!
 
     override func prepareForReuse() {
         menuItemNameLabel.text = nil

@@ -27,12 +27,11 @@ extension UIViewController {
 
 extension UIViewController {
     func displayError(_ error: Error, _ title: String) {
-        guard let _ = viewIfLoaded?.window
-        else { return }
-
-        let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "Dismiss", style: .default)
-        alert.addAction(alertAction)
-        self.present(alert, animated: true)
+        if viewIfLoaded?.window != nil {
+            let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "Dismiss", style: .default)
+            alert.addAction(alertAction)
+            self.present(alert, animated: true)
+        }
     }
 }

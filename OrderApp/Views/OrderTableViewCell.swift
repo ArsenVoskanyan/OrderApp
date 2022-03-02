@@ -16,11 +16,11 @@ class OrderTableViewCell: UITableViewCell {
     private var imageLoadTask: Task<Void, Never>?
     private var price = 0.0
 
-    @IBOutlet private weak var orderItemImageView: UIImageView!
-    @IBOutlet private weak var orderItemNameLabel: UILabel!
-    @IBOutlet private weak var orderItemPriceLabel: UILabel!
-    @IBOutlet private weak var totalOrderItemLabel: UILabel!
-    @IBOutlet private weak var orderItemStepper: UIStepper!
+    @IBOutlet private var orderItemImageView: UIImageView!
+    @IBOutlet private var orderItemNameLabel: UILabel!
+    @IBOutlet private var orderItemPriceLabel: UILabel!
+    @IBOutlet private var totalOrderItemLabel: UILabel!
+    @IBOutlet private var orderItemStepper: UIStepper!
 
     override func awakeFromNib() {
         super.awakeFromNib()

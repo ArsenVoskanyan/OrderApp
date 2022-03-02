@@ -41,19 +41,19 @@ class OrderTableViewController: UITableViewController {
 
         alertController.addAction(UIAlertAction(
             title: "Submit",
-            style: .default,
-            handler: { _ in
-                self.uploadOrder(price: orderTotalPrice)
-
-            }))
+            style: .default
+        ) { _ in
+            self.uploadOrder(price: orderTotalPrice)
+        })
 
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+
         present(alertController, animated: true)
     }
 
     private func uploadOrder(price: Double) {
         let allMenuItems = OrderController.shared.order.menuItems + menuItems
-        let menuIds = allMenuItems.map { $0.id }
+        let menuIds = allMenuItems.map(\.id)
 
         Task {
             do {
